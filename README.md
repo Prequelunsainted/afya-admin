@@ -14,7 +14,9 @@
 
 ## Objetivo do projeto
 
-PREENCHER — explique com suas palavras o objetivo do projeto e o que a página faz (2 a 4 parágrafos).
+O projeto é uma aplicação web feita em Blazor, chamada afya_admin, que funciona como um painel administrativo. A página principal mostra um Dashboard com alguns indicadores (KPIs), cards com informações e um seletor de período para que os dados exibidos possam ser alterados de acordo com o período escolhido.
+
+No geral, o objetivo do projeto foi construir um Dashboard administrativo em Blazor, utilizando componentes reutilizáveis e o MudBlazor para organizar e estilizar a interface. A página mostra indicadores e informações importantes de maneira visual, além de permitir a seleção de diferentes períodos. Durante a construção, foram utilizados conceitos importantes do Blazor, como Layouts, Pages, Components, RenderFragment, data binding com @bind-Valor, organização dos dados e responsividade através do MudGrid.
 
 ## Tecnologias utilizadas
 
@@ -122,21 +124,40 @@ afya-admin/
 
 ## O que aprendi
 
-PREENCHER — responda com suas próprias palavras, um parágrafo curto por pergunta.
+**1. Como uma aplicação Blazor WebAssembly inicia no navegador? Qual é o papel do `index.html`, da `<div id="app">` e do `Program.cs`?**
 
-1. Como uma aplicação Blazor WebAssembly inicia no navegador? Qual é o papel do `index.html`, da `<div id="app">` e do `Program.cs`?
-2. Qual é a diferença entre um **Layout**, uma **Page** e um **Component** neste projeto? Dê um exemplo de cada.
-3. O que é um `RenderFragment` e como o `DashboardCard` usa esse recurso para ser reutilizado por vários cards?
-4. Como funciona o `@bind-Valor` no `SeletorPeriodo`? Qual é o papel do `ValorChanged`?
-5. Por que os dados ficam na pasta `Data`, separados dos componentes? Que vantagem isso traz se, no futuro, os dados vierem de uma API?
-6. Como o `MudGrid` com `xs`, `sm` e `lg` faz os cards de KPI se reorganizarem em telas de tamanhos diferentes?
-7. Como foi possível estilizar a página inteira sem escrever CSS? Explique o papel do tema (`MudTheme`) e das classes utilitárias.
-8. Por que o namespace do projeto é `afya_admin` e não `afya-admin`?
+O funcionamento do Blazor no navegador começa pelo arquivo index.html. Dentro dele existe a `<div id="app">`, que é basicamente o espaço onde a aplicação Blazor vai ser carregada. Quando o navegador abre o projeto, o Blazor WebAssembly é iniciado através do arquivo JavaScript do próprio framework. Depois disso, o Program.cs entra na configuração da aplicação, registrando os serviços necessários e definindo o componente inicial. A partir daí, os componentes Blazor são renderizados dentro da `<div id="app">`. Então, de forma resumida, o navegador carrega o index.html, encontra a `<div id="app">`, inicia o Blazor e o Program.cs configura a aplicação para que a interface seja exibida.
+
+**2. Qual é a diferença entre um Layout, uma Page e um Component neste projeto? Dê um exemplo de cada.**
+
+A diferença entre Layout, Page e Component está principalmente na função de cada um. O Layout é a estrutura que pode ser compartilhada entre várias páginas, como um menu, cabeçalho ou área principal. Ele possui um @Body, que é onde o conteúdo da página atual é colocado. A Page é uma tela específica da aplicação e normalmente possui uma rota, como uma página /dashboard. Já o Component é uma parte reutilizável da interface. Um exemplo é o DashboardCard, que pode ser utilizado várias vezes para mostrar diferentes informações sem precisar criar o mesmo código novamente. Então, o Layout organiza a estrutura geral, a Page representa uma tela e o Component representa uma parte reutilizável dessa tela.
+
+**3. O que é um `RenderFragment` e como o `DashboardCard` usa esse recurso para ser reutilizado por vários cards?**
+
+O RenderFragment é um recurso do Blazor que permite passar conteúdo para dentro de um componente. No caso do DashboardCard, ele é útil porque o card pode ter uma estrutura padrão, mas permitir que o conteúdo interno seja definido de acordo com o lugar onde ele está sendo utilizado. Dessa forma, o mesmo DashboardCard pode ser usado para diferentes informações sem precisar criar um componente diferente para cada tipo de conteúdo. O RenderFragment deixa o componente mais flexível e reutilizável.
+
+**4. Como funciona o `@bind-Valor` no `SeletorPeriodo`? Qual é o papel do `ValorChanged`?**
+
+No SeletorPeriodo, o @bind-Valor é usado para fazer a ligação entre o valor selecionado no componente e uma variável da página que está utilizando esse componente. Quando escrevemos @bind-Valor, o Blazor utiliza a propriedade Valor junto com o ValorChanged para fazer essa comunicação automaticamente. O Valor representa o valor atual do período selecionado e o ValorChanged é responsável por avisar o componente pai quando esse valor muda. Então, quando o usuário escolhe outro período, o SeletorPeriodo dispara o ValorChanged e a variável que está ligada através do @bind-Valor é atualizada. Isso facilita bastante a comunicação entre o componente e a página.
+
+**5. Por que os dados ficam na pasta `Data`, separados dos componentes? Que vantagem isso traz se, no futuro, os dados vierem de uma API?**
+
+Os dados ficam na pasta Data porque essa pasta serve para organizar as informações e as classes relacionadas aos dados da aplicação, separando essa parte da interface visual. Dessa maneira, os componentes ficam mais focados em mostrar as informações, enquanto a parte relacionada aos dados fica organizada em outro lugar. Isso também facilita uma possível alteração no futuro, como trocar dados fixos por dados vindos de uma API, sem precisar modificar toda a interface.
+
+**6. Como o `MudGrid` com `xs`, `sm` e `lg` faz os cards de KPI se reorganizarem em telas de tamanhos diferentes?**
+
+O MudGrid é utilizado para organizar os KPIs de forma responsiva. Os valores xs, sm e lg definem quanto espaço cada item ocupa dependendo do tamanho da tela. Por exemplo, se um KPI possui xs="12", em uma tela pequena ele pode ocupar toda a largura. Com sm="6", em uma tela um pouco maior ele pode ocupar metade da largura, e com lg="3", em uma tela grande ele pode ocupar um quarto da largura. Isso faz com que os cards se reorganizem automaticamente. Em uma tela grande eles podem ficar vários lado a lado, enquanto em uma tela menor podem ficar em duas colunas ou até um embaixo do outro. Dessa forma, o Dashboard consegue ser responsivo sem precisar criar diferentes layouts para cada tamanho de tela.
+
+**7. Como foi possível estilizar a página inteira sem escrever CSS? Explique o papel do tema (`MudTheme`) e das classes utilitárias.**
+
+Foi possível estilizar a aplicação sem criar um arquivo CSS cheio de regras próprias principalmente por causa do MudBlazor. A biblioteca já possui componentes prontos, propriedades de estilo, classes utilitárias e um sistema de tema. Com isso, é possível controlar cores, espaçamentos, tamanhos, alinhamentos e a aparência dos componentes diretamente através dos recursos do MudBlazor. Isso evita a necessidade de criar CSS manual para cada detalhe e também deixa a aparência da aplicação mais consistente.
+
+**8. Por que o namespace do projeto é `afya_admin` e não `afya-admin`?**
+
+O namespace é afya_admin porque esse é o nome utilizado como identificação principal do projeto. Ele serve para organizar as classes e componentes dentro da aplicação. Quando temos, por exemplo, afya_admin.Data, significa que estamos dentro do namespace principal afya_admin, mas em uma área específica relacionada aos dados. Usar o mesmo namespace principal ajuda a manter a estrutura do projeto organizada.
 
 ## Dificuldades e soluções
 
-PREENCHER — descreva pelo menos dois problemas que você enfrentou durante o desenvolvimento e como resolveu cada um.
+Durante o desenvolvimento também tivemos algumas dificuldades. Uma delas aconteceu quando tentamos executar o comando dotnet --version. O comando deu erro porque o SDK do .NET não estava disponível/configurado no ambiente naquele momento. Isso mostrou que, antes de executar um projeto .NET, é importante verificar se o SDK necessário está instalado e funcionando corretamente, já que comandos de desenvolvimento como dotnet build e dotnet watch dependem dele.
 
-## Melhorias futuras (opcional)
-
-PREENCHER
+Outra dificuldade aconteceu quando o dotnet watch foi executado na pasta errada. Como esse comando precisa encontrar o projeto, ele procura o arquivo do projeto, como o .csproj, no diretório em que está sendo executado. Como o comando foi rodado em uma pasta que não era a pasta correta do projeto, ele não conseguiu localizar a aplicação da forma esperada. Depois foi necessário entrar na pasta correta do projeto e executar o dotnet watch novamente. Esse erro foi importante porque mostrou que não basta apenas executar o comando: também é necessário estar no diretório correto da aplicação.
