@@ -14,7 +14,7 @@
 
 ## Objetivo do projeto
 
-O projeto é uma aplicação web feita em Blazor, chamada afya_admin, que funciona como um painel administrativo. A página principal mostra um Dashboard com alguns indicadores (KPIs), cards com informações e um seletor de período para que os dados exibidos possam ser alterados de acordo com o período escolhido.
+O projeto é uma aplicação web feita em Blazor, chamada afya-admin, que funciona como um painel administrativo. A página principal mostra um Dashboard com alguns indicadores (KPIs), cards com informações e um seletor de período. Neste projeto ele só troca o texto do botão; os KPIs não mudam.
 
 No geral, o objetivo do projeto foi construir um Dashboard administrativo em Blazor, utilizando componentes reutilizáveis e o MudBlazor para organizar e estilizar a interface. A página mostra indicadores e informações importantes de maneira visual, além de permitir a seleção de diferentes períodos. Durante a construção, foram utilizados conceitos importantes do Blazor, como Layouts, Pages, Components, RenderFragment, data binding com @bind-Valor, organização dos dados e responsividade através do MudGrid.
 
@@ -130,7 +130,7 @@ O funcionamento do Blazor no navegador começa pelo arquivo index.html. Dentro d
 
 **2. Qual é a diferença entre um Layout, uma Page e um Component neste projeto? Dê um exemplo de cada.**
 
-A diferença entre Layout, Page e Component está principalmente na função de cada um. O Layout é a estrutura que pode ser compartilhada entre várias páginas, como um menu, cabeçalho ou área principal. Ele possui um @Body, que é onde o conteúdo da página atual é colocado. A Page é uma tela específica da aplicação e normalmente possui uma rota, como uma página /dashboard. Já o Component é uma parte reutilizável da interface. Um exemplo é o DashboardCard, que pode ser utilizado várias vezes para mostrar diferentes informações sem precisar criar o mesmo código novamente. Então, o Layout organiza a estrutura geral, a Page representa uma tela e o Component representa uma parte reutilizável dessa tela.
+A diferença entre Layout, Page e Component está principalmente na função de cada um. O Layout é a estrutura que pode ser compartilhada entre várias páginas, como um menu, cabeçalho ou área principal. Ele possui um @Body, que é onde o conteúdo da página atual é colocado. Neste projeto o Layout é o MainLayout.razor. A Page é uma tela específica da aplicação e possui uma rota: aqui é o Dashboard.razor, que responde pela rota "/". Já o Component é uma parte reutilizável da interface. Um exemplo é o DashboardCard, que pode ser utilizado várias vezes para mostrar diferentes informações sem precisar criar o mesmo código novamente. Então, o Layout organiza a estrutura geral, a Page representa uma tela e o Component representa uma parte reutilizável dessa tela.
 
 **3. O que é um `RenderFragment` e como o `DashboardCard` usa esse recurso para ser reutilizado por vários cards?**
 
@@ -154,7 +154,7 @@ Foi possível estilizar a aplicação sem criar um arquivo CSS cheio de regras p
 
 **8. Por que o namespace do projeto é `afya_admin` e não `afya-admin`?**
 
-O namespace é afya_admin porque esse é o nome utilizado como identificação principal do projeto. Ele serve para organizar as classes e componentes dentro da aplicação. Quando temos, por exemplo, afya_admin.Data, significa que estamos dentro do namespace principal afya_admin, mas em uma área específica relacionada aos dados. Usar o mesmo namespace principal ajuda a manter a estrutura do projeto organizada.
+O C# não aceita hífen em nomes, porque afya-admin seria lido como "afya menos admin". Por isso o SDK troca o hífen por sublinhado, e o namespace fica afya_admin. A pasta e o arquivo do projeto continuam com hífen (afya-admin), mas no código, como em afya_admin.Data, aparece o sublinhado.
 
 ## Dificuldades e soluções
 
