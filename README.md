@@ -50,7 +50,12 @@ O `dotnet watch` compila, abre o navegador e recarrega a página a cada alteraç
 ### HTML gerado (DevTools)
 ![Inspeção do HTML no DevTools](docs/prints/devtools.png)
 
-PREENCHER — explique em poucas linhas o que o print do DevTools mostra: qual componente você inspecionou, qual HTML ele gerou e quais classes apareceram.
+O print mostra a aba Elements com o card de KPI "Receita" inspecionado:
+
+- o `<MudPaper Elevation="1" Class="pa-4" Height="100%">` do `KpiCard.razor` virou `<div class="mud-paper mud-elevation-1 pa-4" style="height:100%;">`: a classe utilitária `pa-4` escrita no código aparece igual no HTML final;
+- o `<MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">` virou `<div role="group" class="d-flex flex-row align-center gap-3">`;
+- o `<MudText Typo="Typo.body2" Class="mud-text-secondary">` virou `<p class="mud-typography mud-typography-body2 mud-text-secondary">`, e o valor com `Typo.h5` virou um `<h5>`;
+- cada `<MudItem xs="12" sm="6" lg="3">` do `Dashboard.razor` virou uma `<div>` com as classes `mud-grid-item-xs-12 mud-grid-item-sm-6 mud-grid-item-lg-3`.
 
 ## Estrutura do projeto
 
