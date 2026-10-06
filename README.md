@@ -5,11 +5,11 @@
 | | |
 |---|---|
 | **Aluno(a)** | Lucas Gabriel Barreto Oliveira |
-| **Matrícula** | PREENCHER |
-| **Faculdade** | PREENCHER |
-| **Curso** | PREENCHER |
+| **Matrícula** | 2630436 |
+| **Faculdade** | São Lucas Campus 2 |
+| **Curso** | Ciência da Computação |
 | **Disciplina** | Programação para Sistemas Web |
-| **Professor(a)** | PREENCHER |
+| **Professor(a)** | LILUYOUD CURY DE LACERDA |
 | **Semestre** | 2026.2 |
 
 ## Objetivo do projeto
