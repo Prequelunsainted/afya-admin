@@ -2,4 +2,13 @@
 
 <PageTitle>Dashboard | Afya Pedagógico</PageTitle>
 
-<MudText Typo="Typo.h4">Dashboard</MudText>
+<CabecalhoPagina Titulo="Dashboard" Subtitulo="Visão geral da plataforma e indicadores de desempenho.">
+    <Acoes>
+        <SeletorPeriodo Opcoes="DashboardData.Periodos" @bind-Valor="_periodo" />
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" StartIcon="@Icons.Material.Filled.Add">Novo Projeto</MudButton>
+    </Acoes>
+</CabecalhoPagina>
+
+@code {
+    private string _periodo = "Últimos 30 dias";
+}
